@@ -1,0 +1,130 @@
+version: '3.8'
+
+services:
+
+  users-db:
+    image: postgres:15
+    container_name: postgres-user-con
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: users_a1
+    volumes:
+      - postgres-db1:/var/lib/postgresql/data
+    ports:
+      - '5433:5432'
+    networks:
+      demo_net:
+
+  devices-db:
+    image: postgres:15
+    container_name: postgres-device-con
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: devices_a1
+    volumes:
+      - postgres-db2:/var/lib/postgresql/data
+    ports:
+      - '5434:5432'
+    networks:
+      demo_net:
+
+  sensors-db:
+    image: postgres:15
+    container_name: postgres-monitoring-con
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sensors_a2
+    volumes:
+      - postgres-db3:/var/lib/postgresql/data
+    ports:
+      - '5435:5432'
+    networks:
+      demo_net:
+
+  react:
+    image: frontend-app
+    container_name: react-con
+    ports:
+      - '3000:80'
+    networks:
+      demo_net:
+        ipv4_address: 172.16.238.4
+
+  devices: 
+    image: device-app
+    container_name: devices
+    build:
+      context: .
+    ports:
+      - '8081:8081'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://devices-db:5432/devices_a1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - devices-db
+    networks:
+      demo_net:
+        ipv4_address: 172.16.238.6
+
+  users: 
+    image: user-app
+    container_name: users
+    build:
+      context: .
+    ports:
+      - '8083:8080'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://users-db:5432/users_a1
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - users-db
+      - devices
+    networks:
+      demo_net:
+        ipv4_address: 172.16.238.8
+
+  sensors: 
+    image: monitoring-app
+    container_name: sensors
+    build:
+      context: .
+    ports:
+      - '8082:8082'
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://sensors-db:5432/sensors_a2
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    depends_on:
+      - sensors-db
+      - devices
+    networks:
+      demo_net:
+        ipv4_address: 172.16.238.7
+  
+  chat:
+    image: chat-app
+    container_name: chat
+    build:
+      context: .
+    ports:
+      - '8084:8084'
+    networks:
+      demo_net:
+        ipv4_address: 172.16.238.9
+
+volumes:
+  postgres-db1:
+  postgres-db2:
+  postgres-db3:
+
+networks:
+  demo_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.238.0/24"

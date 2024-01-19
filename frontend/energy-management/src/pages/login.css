@@ -1,0 +1,41 @@
+.create {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 130px;
+  text-align: center;
+}
+
+.signup-container {
+  text-align: center;
+  padding: 10px;
+}
+
+.signup-heading {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.login-signup-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+.login-form {
+  padding: 30px;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

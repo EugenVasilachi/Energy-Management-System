@@ -1,0 +1,119 @@
+.admin-container {
+  display: flex;
+}
+
+table td {
+  text-align: center;
+}
+
+.table-user {
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Adjust the spacing value as needed */
+}
+
+.table-device {
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Adjust the spacing value as needed */
+}
+
+.div-mapping {
+  margin: 20px;
+}
+
+.show-mapping {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the contents horizontally */
+}
+
+.table-mapping {
+  width: 80%; /* Adjust the width as needed */
+  border-collapse: separate;
+  border-spacing: 0 10px; /* Adjust the spacing value as needed */
+  text-align: center;
+}
+
+.table-mapping th,
+.table-mapping td {
+  padding: 8px; /* Add padding to the table cells for spacing */
+}
+
+.update-mapping {
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.left-column {
+  flex: 1; /* Take up half of the available width */
+  padding: 20px;
+  margin: 10px;
+}
+
+.right-column {
+  flex: 1; /* Take up half of the available width */
+  padding: 20px;
+  margin: 10px;
+}
+
+.update-button {
+  background: #35f1b9;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.delete-button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.add-button {
+  background: #35f1b9;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.detail-input {
+  width: 50%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.notification {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification p {
+  margin: 0;
+}
+
+.notification button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #721c24;
+}
